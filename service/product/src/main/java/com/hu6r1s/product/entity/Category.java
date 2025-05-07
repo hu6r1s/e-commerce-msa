@@ -20,7 +20,7 @@ public class Category {
 
   @Id
   @GeneratedValue
-  private Integer id;
+  private Long id;
   private String name;
   private String description;
   @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
