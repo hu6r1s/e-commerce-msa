@@ -29,4 +29,8 @@ public class Product {
   @ManyToOne
   @JoinColumn(name = "category_id")
   private Category category;
+
+  public void updateAvailableQuantity(double newAvailableQuantity) {
+    this.availableQuantity = newAvailableQuantity;
+  }
 }

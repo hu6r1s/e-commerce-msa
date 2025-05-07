@@ -1,0 +1,7 @@
+package com.hu6r1s.product.handler;
+
+import java.util.Map;
+
+public record ErrorResponse(
+    Map<String, String> errors
+) { }
