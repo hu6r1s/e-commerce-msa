@@ -18,4 +18,4 @@ spring:
     password: ${spring.datasource.password}
 
 server:
-  port: 8091
+  port: 8050
