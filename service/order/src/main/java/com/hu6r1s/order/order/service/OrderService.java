@@ -6,6 +6,7 @@ import com.hu6r1s.order.customer.exception.BusinessException;
 import com.hu6r1s.order.kafka.OrderConfirmation;
 import com.hu6r1s.order.kafka.OrderProducer;
 import com.hu6r1s.order.order.dto.request.OrderRequest;
+import com.hu6r1s.order.order.dto.response.OrderResponse;
 import com.hu6r1s.order.order.entity.Order;
 import com.hu6r1s.order.order.orderline.OrderLineRequest;
 import com.hu6r1s.order.order.orderline.OrderLineService;
@@ -13,7 +14,9 @@ import com.hu6r1s.order.order.repository.OrderRepository;
 import com.hu6r1s.order.product.ProductClient;
 import com.hu6r1s.order.product.dto.request.PurchaseRequest;
 import com.hu6r1s.order.product.dto.response.PurchaseResponse;
+import jakarta.persistence.EntityNotFoundException;
 import java.util.List;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -59,5 +62,18 @@ public class OrderService {
         )
     );
     return order.getId();
+  }
+
+  public List<OrderResponse> findAll() {
+    return orderRepository.findAll()
+        .stream()
+        .map(mapper::fromOrder)
+        .collect(Collectors.toList());
+  }
+
+  public OrderResponse findById(Long orderId) {
+    return orderRepository.findById(orderId)
+        .map(mapper::fromOrder)
+        .orElseThrow(() -> new EntityNotFoundException(String.format("No order found with the provided ID: %d", orderId)));
   }
 }
