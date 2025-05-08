@@ -1,6 +1,6 @@
 package com.hu6r1s.order.product;
 
-import com.hu6r1s.order.customer.exception.BusinessException;
+import com.hu6r1s.order.exception.BusinessException;
 import com.hu6r1s.order.product.dto.request.PurchaseRequest;
 import com.hu6r1s.order.product.dto.response.PurchaseResponse;
 import java.util.List;

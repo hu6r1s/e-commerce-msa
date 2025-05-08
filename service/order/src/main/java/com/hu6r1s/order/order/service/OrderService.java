@@ -2,7 +2,7 @@ package com.hu6r1s.order.order.service;
 
 import com.hu6r1s.order.customer.CustomerClient;
 import com.hu6r1s.order.customer.dto.response.CustomerResponse;
-import com.hu6r1s.order.customer.exception.BusinessException;
+import com.hu6r1s.order.exception.BusinessException;
 import com.hu6r1s.order.kafka.OrderConfirmation;
 import com.hu6r1s.order.kafka.OrderProducer;
 import com.hu6r1s.order.order.dto.request.OrderRequest;

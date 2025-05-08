@@ -1,7 +1,6 @@
 package com.hu6r1s.order.order.orderline;
 
 import com.hu6r1s.order.order.entity.Order;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -19,4 +18,11 @@ public class OrderLineMapper {
         .productId(request.productId())
         .build();
   }
+
+  public OrderLineResponse fromOrderLine(OrderLine orderLine) {
+    return new OrderLineResponse(
+        orderLine.getId(), orderLine.getQuantity()
+    );
+  }
+
 }

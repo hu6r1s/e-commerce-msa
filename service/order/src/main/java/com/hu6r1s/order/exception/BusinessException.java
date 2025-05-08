@@ -1,4 +1,4 @@
-package com.hu6r1s.order.customer.exception;
+package com.hu6r1s.order.exception;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
