@@ -11,6 +11,8 @@ import com.hu6r1s.order.order.entity.Order;
 import com.hu6r1s.order.order.orderline.OrderLineRequest;
 import com.hu6r1s.order.order.orderline.OrderLineService;
 import com.hu6r1s.order.order.repository.OrderRepository;
+import com.hu6r1s.order.payment.PaymentClient;
+import com.hu6r1s.order.payment.PaymentRequest;
 import com.hu6r1s.order.product.ProductClient;
 import com.hu6r1s.order.product.dto.request.PurchaseRequest;
 import com.hu6r1s.order.product.dto.response.PurchaseResponse;
@@ -30,6 +32,7 @@ public class OrderService {
   private final OrderMapper mapper;
   private final OrderLineService orderLineService;
   private final OrderProducer orderProducer;
+  private final PaymentClient paymentClient;
 
   public Long createOrder(OrderRequest request) {
     CustomerResponse customer = customerClient.findCustomerById(request.customerId())
@@ -50,7 +53,15 @@ public class OrderService {
       );
     }
 
-    // todo start payment process
+    PaymentRequest paymentRequest = new PaymentRequest(
+        request.amount(),
+        request.paymentMethod(),
+        order.getId(),
+        order.getReference(),
+        customer
+    );
+
+    paymentClient.requestOrderPayment(paymentRequest);
 
     orderProducer.sendOrderConfirmation(
         new OrderConfirmation(
