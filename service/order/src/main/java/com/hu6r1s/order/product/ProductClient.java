@@ -19,7 +19,7 @@ import org.springframework.web.client.RestTemplate;
 @RequiredArgsConstructor
 public class ProductClient {
 
-  @Value("${applicaion.config.product-url}")
+  @Value("${application.config.product-url}")
   private String productUrl;
   private final RestTemplate restTemplate;
 
